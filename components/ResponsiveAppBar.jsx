@@ -1,16 +1,17 @@
 //Barra de navegación responsiva
 
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+// import { useState } from 'react';
+import PropTypes from 'prop-types';
 import useUser from '../src/useUser';
 import './ResponsiveAppBar.css'; // Import your CSS file
 
 
 
-export default function Sidebar(){
+export default function Sidebar({ isSidebarOpen, setIsSidebarOpen}){
     const { userInfo, handleLogout } = useUser();
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     let pages = [];
+    console.log(userInfo)
     const pageNames = ['Productos', 'Transacciones', 'Inventario', 'Reportes'];
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
@@ -65,5 +66,11 @@ export default function Sidebar(){
 
 
     );
+    
 }
+
+Sidebar.propTypes = {
+  isSidebarOpen: PropTypes.bool.isRequired,
+  setIsSidebarOpen: PropTypes.func.isRequired,
+};
 

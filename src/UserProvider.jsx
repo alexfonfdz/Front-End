@@ -12,7 +12,6 @@ export function UserProvider({ children }) {
 
   const handleLogout = () => {
     sessionStorage.removeItem("userInfo");
-    setUserInfo(null);
     nav("/");
   };
 

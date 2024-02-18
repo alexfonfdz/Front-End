@@ -1,16 +1,16 @@
 import { useState } from 'react';
-import './menuPage.css';
-import Sidebar from '../../components/ResponsiveAppBar';
+import './InventoryPage.css';
+import Sidebar from '../../../components/ResponsiveAppBar';
 
-export default function MenuPage() {
+export default function InventoryPage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   return (
     <div>
       <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
     <div style={{padding: isSidebarOpen ? '275px' : '25px'}}>
-      <h1>Menu</h1>
-      <p>Menu page content</p>
+      <h1>Inventario</h1>
+      <p>Inventario page content</p>
     </div>
     </div>
   );

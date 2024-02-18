@@ -28,7 +28,8 @@ export default function LoginPage() {
         console.log(userInfo)
         if(response.data){
           setUserInfo(response.data);
-          sessionStorage.setItem('userInfo', JSON.stringify(response.data));  
+          sessionStorage.setItem('userInfo', JSON.stringify(response.data));
+          console.log(userInfo)  
         }
         // Redirect to home page
         nav("/menu")
@@ -77,6 +78,7 @@ export default function LoginPage() {
   }
 
   return (
+    <div id="login-container" className="text-center d-lg-flex flex-fill justify-content-center align-items-center align-content-center align-self-center flex-nowrap justify-content-lg-center align-items-lg-center" style={{background: 'rgb(250, 240, 210)', borderColor: 'rgb(117, 42, 116)', borderTopColor: 'rgb(117, 42, 116)', borderRightColor: 'rgb(42, 116, 42)', borderBottomColor: 'rgb(42, 116, 116)', borderLeftColor: 'rgb(42, 116, 42)'}}  >
       <div style={{ background: 'rgb(251, 225, 147)', width: 'auto', height: 'auto', padding: '75px', borderRadius: '10px', border: '2px solid var(--bs-emphasis-color)', marginTop: '30px' }}>
         <div style={{ width: '200px', textAlign: 'center' }}>
           <div style={{ textAlign: 'center' }}><img style={{ height: '100px', borderRadius: '10px', width: '100px', background: 'url(\'src/assets/img/pollomaxlogo.jpg\')', minWidth: 'auto', borderWidth: '10px' }} src="src/assets/img/pollomaxlogo.jpg" alt="Logo"/></div>
@@ -101,6 +103,7 @@ export default function LoginPage() {
         </div>
         <div>
         </div>
+      </div>
       </div>
   );
 }

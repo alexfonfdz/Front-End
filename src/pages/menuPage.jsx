@@ -1,16 +1,15 @@
 import './menuPage.css';
-import Sidebar from '../../components/ResponsiveAppBar';
+import SideBar from '../../components/ResponsiveAppBar';
 
-function MenuPage() {
+export default function MenuPage() {
   return (
     <div>
-        <Sidebar/>
+      <SideBar>
     <div className="menuPage">
       <h1>Menu</h1>
       <p>Menu page content</p>
     </div>
+    </SideBar>
     </div>
   );
 }
-
-export default MenuPage;

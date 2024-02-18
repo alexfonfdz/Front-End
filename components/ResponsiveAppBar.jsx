@@ -7,13 +7,20 @@ import './ResponsiveAppBar.css'; // Import your CSS file
 
 
 
-function Sidebar(){
+export default function Sidebar(){
     const { userInfo, handleLogout } = useUser();
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
+    let pages = [];
+    const pageNames = ['Productos', 'Transacciones', 'Inventario', 'Reportes'];
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
+
+    if(userInfo.userTypeName === 'ADMINISTRADOR'){
+      pages = ['admin-productos', 'transacciones', 'inventario', 'reportes'];
+    }else{
+      pages = ['productos'];
+    }
 
     return (
         <div>
@@ -36,20 +43,13 @@ function Sidebar(){
         </div>
         <ul className="list-unstyled components" style={{ '--bs-primary': '#fbd23a', '--bs-primary-rgb': '251,210,58', background: '#fbd23a', borderColor: '#fbd23a' }}>
           <li style={{ color: 'var(--bs-emphasis-color)', fontSize: '20px', fontFamily: 'Allerta', fontWeight: 'bold' }}>
-            <Link to="/login">Menú</Link>
+            <Link to="/menu">Menú</Link>
           </li>
-          <li style={{ color: 'var(--bs-emphasis-color)', fontSize: '20px', fontFamily: 'Allerta', fontWeight: 'bold' }}>
-            <Link to="#">Productos</Link>
-          </li>
-          <li style={{ color: 'var(--bs-emphasis-color)', fontSize: '20px', fontFamily: 'Allerta', fontWeight: 'bold' }}>
-            <Link to="#">Transacciones</Link>
-          </li>
-          <li style={{ color: 'var(--bs-emphasis-color)', fontSize: '20px', fontFamily: 'Allerta', fontWeight: 'bold' }}>
-            <Link to="#">Inventario</Link>
-          </li>
-          <li style={{ color: 'var(--bs-emphasis-color)', fontSize: '20px', fontFamily: 'Allerta', fontWeight: 'bold' }}>
-            <Link to="#">Reportes</Link>
-          </li>
+          {pages.map((page, index) => (
+              <li key={index} style={{ color: 'var(--bs-emphasis-color)', fontSize: '20px', fontFamily: 'Allerta', fontWeight: 'bold' }}>
+                <Link to={`/${page}`}>{pageNames[index]}</Link>
+              </li>
+          ))}
           <div>
         <button className='close-session' onClick={handleLogout}>
             Cerrar sessión, {userInfo.username}
@@ -67,4 +67,3 @@ function Sidebar(){
     );
 }
 
-export default Sidebar;

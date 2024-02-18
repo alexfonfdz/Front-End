@@ -7,7 +7,7 @@ export function UserProvider({ children }) {
   const nav = useNavigate();
   const [userInfo, setUserInfo] = useState(() => {
     const info = JSON.parse(sessionStorage.getItem('userInfo'));
-    return info || null;
+    return info || false;
   });
 
   const handleLogout = () => {

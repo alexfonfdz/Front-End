@@ -8,8 +8,8 @@ export default function TransactionsPage() {
   return (
     <div>
       <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
-    <div style={{padding: isSidebarOpen ? '275px' : '25px'}}>
-      <h1>Transacciones</h1>
+      <div style={{padding: isSidebarOpen ? '25px 25px 25px 275px' : '25px'}}>     
+       <h1>Transacciones</h1>
       <p>Transacciones page content</p>
     </div>
     </div>

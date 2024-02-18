@@ -8,7 +8,7 @@ export default function MenuPage() {
   return (
     <div>
       <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
-    <div style={{padding: isSidebarOpen ? '275px' : '25px'}}>
+    <div style={{padding: isSidebarOpen ? '25px 25px 25px 275px' : '25px'}}>
       <h1>Menu</h1>
       <p>Menu page content</p>
     </div>

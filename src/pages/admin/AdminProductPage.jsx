@@ -8,7 +8,7 @@ export default function ProductAdminPage() {
   return (
     <div>
       <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
-    <div style={{padding: isSidebarOpen ? '275px' : '25px'}}>
+      <div style={{padding: isSidebarOpen ? '25px 25px 25px 275px' : '25px'}}>      
       <h1>ProductosAdmin</h1>
       <p>ProductosAdmin page content</p>
     </div>

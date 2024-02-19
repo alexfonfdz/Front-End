@@ -2,18 +2,13 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/LoginPage";
 import MenuPage from "./pages/menuPage";
 import { UserProvider } from "./UserProvider";
-import useUser from "./useUser";
 import ProductAdminPage from "./pages/admin/AdminProductPage";
 import TransactionsPage from "./pages/admin/TransactionsPage";
 import InventoryPage from "./pages/admin/InventoryPage";
 import ReportsPage from "./pages/admin/ReportsPage";
 import ProductPage from "./pages/user/ProductPage";
 
-
 function App() {
-  const { userInfo } = useUser();
-  console.log(userInfo)
-
   return (
     <BrowserRouter>
       <UserProvider>
@@ -29,10 +24,10 @@ function App() {
             <Route path="/admin-productos" element={<ProductAdminPage />} />
             <Route path="/transacciones" element={<TransactionsPage />} />
             <Route path="/inventario" element={<InventoryPage />} />
-            <Route path="/reportes" element={<ReportsPage />} /> 
+            <Route path="/reportes" element={<ReportsPage />} />
 
-        <Route path="/" element={<Login />} />
-        </>
+            <Route path="/" element={<Login />} />
+          </>
         </Routes>
       </UserProvider>
     </BrowserRouter>

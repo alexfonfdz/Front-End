@@ -29,8 +29,8 @@ export default function LoginPage() {
         if(response.data){
           setUserInfo(response.data);
           sessionStorage.setItem('userInfo', JSON.stringify(response.data));
-          console.log(userInfo)  
-        }
+          console.log(userInfo)
+        }        
         // Redirect to home page
         nav("/menu")
       } else {

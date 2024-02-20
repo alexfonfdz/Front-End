@@ -70,7 +70,7 @@ ul ul a {
 }
 
 .sidebar .closebtn {
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 25px;
     font-size: 36px;
@@ -96,4 +96,9 @@ ul ul a {
 #open-close-btn:hover {
     background-color: rgb(124, 50, 113) !important;
     color: white;
+}
+
+.sidebar-active{
+    background-color: rgb(124, 50, 113);
+    color: white !important;
 }

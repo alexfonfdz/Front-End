@@ -1,12 +1,10 @@
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import useUser from '../src/useUser';
 import './ResponsiveAppBar.css'; // Import your CSS file
 
 export default function Sidebar({ isSidebarOpen, setIsSidebarOpen}) {
     const { userInfo, handleLogout } = useUser();
-    const [selectedPage, setSelectedPage] = useState('');
 
     let pages = [];
     const pageNames = ['Menú','Productos', 'Transacciones', 'Inventario', 'Reportes'];
@@ -21,14 +19,10 @@ export default function Sidebar({ isSidebarOpen, setIsSidebarOpen}) {
         pages = ['menu','productos'];
     }
 
-    const handlePageClick = (page) => {
-      setSelectedPage(page);
-    };
 
     return (
         <div>
-            <div className="wrapper">
-                <div id="mySidebar" className={`sidebar ${isSidebarOpen ? '' : 'closed'}`} style={{ background: "#fbd23a", height: '100%', width: '250px' }}>
+                <div id="mySidebar" className={`sidebar ${isSidebarOpen ? '' : 'closed'}`} style={{ background: "#fbd23a", height: '100%', width: '250px'}}>
                     <button className="sidebar-toggle" onClick={toggleSidebar}>
                         {isSidebarOpen ? '×' : '☰'}
                     </button>
@@ -46,8 +40,8 @@ export default function Sidebar({ isSidebarOpen, setIsSidebarOpen}) {
                     </div>
                     <ul className="list-unstyled components" style={{ '--bs-primary': '#fbd23a', '--bs-primary-rgb': '251,210,58', background: '#fbd23a', borderColor: '#fbd23a' }}>
                         {pages.map((page, index) => (
-                            <li key={index} style={{ backgroundColor: selectedPage===page ? 'rgb(124,50,113)':'#fbd23a', color: selectedPage===page ? 'white':'var(--bs-emphasis-color)', fontSize: '20px', fontFamily: 'Allerta', fontWeight: 'bold' }}>
-                                <Link to={`/${page}`} onClick={() => handlePageClick(page)}>{pageNames[index]}</Link>
+                            <li key={index} style={{ backgroundColor: '#fbd23a', color: 'var(--bs-emphasis-color)', fontSize: '20px', fontFamily: 'Allerta', fontWeight: 'bold' }}>
+                                <NavLink to={`/${page}`} className={({isActive}) => `${isActive === true ? 'sidebar-active': ''}`}>{pageNames[index]}</NavLink>
                             </li>
                         ))}
                         <div>
@@ -57,7 +51,6 @@ export default function Sidebar({ isSidebarOpen, setIsSidebarOpen}) {
                         </div>
                     </ul>
                 </div>
-            </div>
             <button className="sidebar-toggle" onClick={toggleSidebar}>
                 {isSidebarOpen ? '×' : '☰'}
             </button>

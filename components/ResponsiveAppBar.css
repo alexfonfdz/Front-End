@@ -44,8 +44,8 @@
   }
   
   .close-session:hover {
-    background-color: #fff;
-    color: #7386D5;
+    background-color: rgb(124, 50, 113);
+    color: white;
   }
   
   .sidebar.closed {
@@ -53,8 +53,8 @@
   }
 
   .sidebar-toggle:hover {
-    background-color: #fff;
-    color: #7386D5;
+    background-color: rgb(124, 50, 113);
+    color: white;
   }
 
 a, a:hover, a:focus {
@@ -66,7 +66,7 @@ a, a:hover, a:focus {
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #6d7fcc;
+    background: white;
 }
 
 .sidebar .closebtn {
@@ -89,11 +89,11 @@ ul ul a {
 
 /* Nuevo estilo para el hover */
 .sidebar a:hover {
-    background-color: #fff;
-    color: #7386D5;
+    background-color: rgb(124, 50, 113);
+    color: white;
 }
 
 #open-close-btn:hover {
-    background-color: #fff !important;
-    color: #7386D5;
+    background-color: rgb(124, 50, 113) !important;
+    color: white;
 }

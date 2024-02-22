@@ -62,14 +62,14 @@ const PopupProduct = ({ onClose }) => {
                 </div>
                 <div>
                     <div className="text-start" style={{ borderRadius: '5px', color: 'rgb(157,153,153)', background: '#D9D9D9', padding: '10px', border: '2px solid var(--bs-emphasis-color)', width: '330px' }}>
-                        <input type="text" style={{ color: 'rgb(194,186,186)', background: 'rgba(255,255,255,0)', borderColor: 'rgba(194,186,186,0)' }} />
+                        <input type="number" style={{ color: 'black', background: 'rgba(255,255,255,0)', borderColor: 'rgba(194,186,186,0)', outline:'none' }} />
                     </div>
                 </div>
                 <div>
                     <p style={{ marginTop: '10px', textAlign: 'left', fontFamily: 'Allerta', fontSize: '18px' }}>Notas</p>
                 </div>
                 <div style={{ alignContent:"initial", borderRadius: '5px', color: 'rgb(157,153,153)', background: '#D9D9D9', padding: '10px', width: '330px', height: '120px', border: '2px solid var(--bs-emphasis-color)' }}>
-                    <input type="text" style={{ color: 'rgb(194,186,186)', background: 'rgba(255,255,255,0)', borderStyle: 'none', borderColor: 'rgba(194,186,186,0)', height:'95px', outline:'none' }} />
+                    <input type="text" style={{ color: 'black', background: 'rgba(255,255,255,0)', borderStyle: 'none', borderColor: 'rgba(194,186,186,0)', height:'95px', outline:'none' }} />
                 </div>
                 <div>
                     <button onClick={onClose} className="btn btn-primary" type="button" style={{ marginTop: '20px', fontFamily: 'Allerta', background: color.color, borderWidth: '5px', borderColor: color.borderColor, borderTopColor: color.borderTopColor, borderRightColor: color.borderRightColor, borderBottomColor: color.borderBottomColor, outline: 'none' }} onMouseUp={handleMouseUp} onMouseDown={handleMouseDown} onMouseOver={handleHover} onMouseLeave={handleMouseUp}>AGREGAR AL CARRITO</button>

@@ -100,7 +100,7 @@ export default function InventoryPage() {
         </div>
         <div
           className="table-container"
-          style={{ width: isSidebarOpen ? "100vw" : "100vw" }}
+          style={{ width: isSidebarOpen ? "83.7vw" : "100vw" }}
         >
           <table className="table">
             <thead style={{ backgroundColor: "purple", color: "white" }}>

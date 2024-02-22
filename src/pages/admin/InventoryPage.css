@@ -21,11 +21,12 @@ td:last-child {
   border-top-right-radius: 10px; 
 }
 .table-container {
+  flex-grow: 1;
   overflow-x: auto;
   overflow-y: auto;
   border: 0px solid;
-  width: 1500px;
-  height: 700px;
+  width: 100vw;
+  height: 75vh;
 }
 
 .table thead th {
@@ -40,7 +41,6 @@ td:last-child {
 
 .div-search {
   background-color: purple;
-  margin-top: 0px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,4 +58,6 @@ td:last-child {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px; 
   border-top-right-radius: 10px; 
+  outline: none;
+  color: black;
 }

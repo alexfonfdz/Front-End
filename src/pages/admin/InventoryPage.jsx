@@ -1,20 +1,23 @@
-import { useState, useEffect } from 'react';
-import './InventoryPage.css';
-import Sidebar from '../../../components/ResponsiveAppBar';
-import notificacion from '../../assets/img/notificacion.png';
-import axios from 'axios';
-import EditMinimumAmountPopup from '../../../components/PopUpInventory';
+import { useState, useEffect } from "react";
+import "./InventoryPage.css";
+import Sidebar from "../../../components/ResponsiveAppBar";
+import notificacion from "../../assets/img/notificacion.png";
+import axios from "axios";
+import EditMinimumAmountPopup from "../../../components/PopUpInventory";
 
 async function updateInventoryAmount(idProduct, minimumAmount) {
   try {
-    const response = await axios.put('http://localhost:3000/updateInventoryAmount', {
-      idProduct,
-      minimumAmount,
-    });
+    const response = await axios.put(
+      "http://localhost:3000/updateInventoryAmount",
+      {
+        idProduct,
+        minimumAmount,
+      }
+    );
 
     console.log(response.data.message);
   } catch (error) {
-    console.error('Error:', error);
+    console.error("Error:", error);
   }
 }
 
@@ -23,17 +26,17 @@ export default function InventoryPage() {
   const [items, setItems] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [currentItem, setCurrentItem] = useState(null);
-  const [searchTerm, setSearchTerm] = useState(''); // Cambia esto para que searchTerm sea modificable
+  const [searchTerm, setSearchTerm] = useState(""); // Cambia esto para que searchTerm sea modificable
 
   const fetchItems = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/inventory');
+      const response = await axios.get("http://localhost:3000/inventory");
       setItems(response.data);
     } catch (error) {
-      console.error('There was an error!', error);
+      console.error("There was an error!", error);
     }
   };
-  
+
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
   };
@@ -42,18 +45,20 @@ export default function InventoryPage() {
   }, []);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/inventory')
-      .then(response => {
+    axios
+      .get("http://localhost:3000/inventory")
+      .then((response) => {
         setItems(response.data);
       })
-      .catch(error => {
-        console.error('There was an error!', error);
+      .catch((error) => {
+        console.error("There was an error!", error);
       });
   }, []);
 
-  const filteredItems = items.filter((item) =>
-    item.productName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    item.idProduct.toString().includes(searchTerm)
+  const filteredItems = items.filter(
+    (item) =>
+      item.productName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.idProduct.toString().includes(searchTerm)
   );
 
   const startEditing = (item) => {
@@ -67,28 +72,38 @@ export default function InventoryPage() {
 
   const handleSave = async (minimumAmount) => {
     await updateInventoryAmount(currentItem.idProduct, minimumAmount);
-    setItems(items.map(item => 
-      item.idProduct === currentItem.idProduct ? { ...item, minimumAmount: minimumAmount } : item
-    ));
+    setItems(
+      items.map((item) =>
+        item.idProduct === currentItem.idProduct
+          ? { ...item, minimumAmount: minimumAmount }
+          : item
+      )
+    );
     fetchItems();
     stopEditing();
   };
-  
+
   return (
     <div>
-      <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
-      <div style={{padding: isSidebarOpen ? '25px 25px 25px 275px' : '25px'}}>    
-      <div className="div-search">
-      <input
-          type="search"
-          placeholder="Buscar producto por nombre o ID..."
-          value={searchTerm}
-          onChange={handleSearchChange}
-        />   
-      </div>   
-      <div className="table-container">
+      <Sidebar
+        isSidebarOpen={isSidebarOpen}
+        setIsSidebarOpen={setIsSidebarOpen}
+      />
+      <div style={{ padding: isSidebarOpen ? "0px 0px 0px 250px" : "0px" }}>
+        <div className="div-search">
+          <input
+            type="search"
+            placeholder="Buscar producto por nombre o ID..."
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
+        </div>
+        <div
+          className="table-container"
+          style={{ width: isSidebarOpen ? "100vw" : "100vw" }}
+        >
           <table className="table">
-          <thead style={{backgroundColor: 'purple', color: 'white'}}>
+            <thead style={{ backgroundColor: "purple", color: "white" }}>
               <tr>
                 <th>ID Producto</th>
                 <th>Tipo de Producto</th>
@@ -100,24 +115,94 @@ export default function InventoryPage() {
               </tr>
             </thead>
             <tbody>
-            {filteredItems.map((item) => (
-                <tr key={item.id} >
-                  <td style={{ backgroundColor: item.productAmount < item.minimumAmount ? '#F5B470' : '#90EE90' }}>{item.idProduct}</td>
-                  <td style={{ backgroundColor: item.productAmount < item.minimumAmount ? '#F5B470' : '#90EE90' }}>{item.idProductType}</td>
-                  <td style={{ backgroundColor: item.productAmount < item.minimumAmount ? '#F5B470' : '#90EE90' }}>{item.productName}</td>
-                  <td style={{ backgroundColor: item.productAmount < item.minimumAmount ? '#F5B470' : '#90EE90' }}>{item.productAmount}</td>
-                  <td style={{ backgroundColor: item.productAmount < item.minimumAmount ? '#F5B470' : '#90EE90' }}>{item.minimumAmount}</td>
-                  <td style={{ backgroundColor: item.productAmount < item.minimumAmount ? '#F5B470' : '#90EE90' }}>{item.unitName}</td>
-                  <td style={{ backgroundColor: item.productAmount < item.minimumAmount ? '#F5B470' : '#90EE90' }}>
-                    <img src={notificacion} onClick={() => startEditing(item)}/>
+              {filteredItems.map((item) => (
+                <tr key={item.id}>
+                  <td
+                    style={{
+                      backgroundColor:
+                        item.productAmount < item.minimumAmount
+                          ? "#F5B470"
+                          : "#90EE90",
+                    }}
+                  >
+                    {item.idProduct}
+                  </td>
+                  <td
+                    style={{
+                      backgroundColor:
+                        item.productAmount < item.minimumAmount
+                          ? "#F5B470"
+                          : "#90EE90",
+                    }}
+                  >
+                    {item.idProductType}
+                  </td>
+                  <td
+                    style={{
+                      backgroundColor:
+                        item.productAmount < item.minimumAmount
+                          ? "#F5B470"
+                          : "#90EE90",
+                    }}
+                  >
+                    {item.productName}
+                  </td>
+                  <td
+                    style={{
+                      backgroundColor:
+                        item.productAmount < item.minimumAmount
+                          ? "#F5B470"
+                          : "#90EE90",
+                    }}
+                  >
+                    {item.productAmount}
+                  </td>
+                  <td
+                    style={{
+                      backgroundColor:
+                        item.productAmount < item.minimumAmount
+                          ? "#F5B470"
+                          : "#90EE90",
+                    }}
+                  >
+                    {item.minimumAmount}
+                  </td>
+                  <td
+                    style={{
+                      backgroundColor:
+                        item.productAmount < item.minimumAmount
+                          ? "#F5B470"
+                          : "#90EE90",
+                    }}
+                  >
+                    {item.unitName}
+                  </td>
+                  <td
+                    style={{
+                      backgroundColor:
+                        item.productAmount < item.minimumAmount
+                          ? "#F5B470"
+                          : "#90EE90",
+                    }}
+                  >
+                    <img
+                      src={notificacion}
+                      onClick={() => startEditing(item)}
+                    />
                   </td>
                 </tr>
-            ))}
+              ))}
             </tbody>
           </table>
         </div>
       </div>
-      {isEditing && <EditMinimumAmountPopup onClose={stopEditing} item={currentItem} onSave={handleSave} />}
+      {isEditing && (
+        <EditMinimumAmountPopup
+          onClose={stopEditing}
+          item={currentItem}
+          onSave={handleSave}
+        />
+      )}
     </div>
   );
 }

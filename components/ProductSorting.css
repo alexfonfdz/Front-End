@@ -1,0 +1,63 @@
+/* Barra de organización */
+.product-sorting-general {
+  display: block;
+  background-color: #d2aaf8; 
+  padding: 0.5em 1em; 
+  width: 82%;
+  box-sizing: border-box; 
+  position: fixed;
+  top: 53px; 
+  left: 250px;
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+}
+
+.product-categories {
+  display: block;
+  display: flex; 
+  justify-content: space-between; 
+  flex: 1; 
+}
+
+.product-categories button {
+  display: block;
+  border-style: hidden;
+  background-color: #d2aaf8;
+  color: black;
+  font-size: 1em;
+  flex: 1; 
+  margin: 0 4.5em; 
+}
+
+.product-categories button:nth-child(1) {
+  transform: translateX(-4em);
+}
+
+.product-categories button:nth-child(2) {
+  transform: translateX(1em);
+}
+
+.product-categories button:nth-child(3) {
+  transform: translateX(6.5em);
+}
+
+
+.product-categories button:nth-child(4) {
+  transform: translateX(-4.5em);
+}
+
+.product-categories button:hover {
+  border: none;
+}
+
+.product-categories button:focus {
+  outline: none;
+}
+
+.image-format {
+  width: 2.5em; 
+  height: 2.5em; 
+  margin: auto;
+  align-items: center;
+}

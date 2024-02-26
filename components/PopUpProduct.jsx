@@ -74,7 +74,7 @@ const PopupProduct = ({onClose, onConfirm, productName }) => {
                         <input type="text" style={{ color: 'black', background: 'rgba(255,255,255,0)', borderStyle: 'none', borderColor: 'rgba(194,186,186,0)', height: '95px', outline: 'none' }} />
                     </div>
                     <div>
-                        <button onClick={handleClick} className="btn btn-primary" type="button" style={{ marginTop: '20px', fontFamily: 'Allerta', background: color.color, borderWidth: '5px', borderColor: color.borderColor, borderTopColor: color.borderTopColor, borderRightColor: color.borderRightColor, borderBottomColor: color.borderBottomColor, outline: 'none' }} onMouseUp={handleMouseUp} onMouseDown={handleMouseDown} onMouseOver={handleHover} onMouseLeave={handleMouseUp}>AGREGAR AL CARRITO</button>
+                        <button onClick={handleClick} className="btn btn-primary" type="button" style={{color:'white', marginTop: '20px', fontFamily: 'Allerta', background: color.color, borderWidth: '5px', borderColor: color.borderColor, borderTopColor: color.borderTopColor, borderRightColor: color.borderRightColor, borderBottomColor: color.borderBottomColor, outline: 'none' }} onMouseUp={handleMouseUp} onMouseDown={handleMouseDown} onMouseOver={handleHover} onMouseLeave={handleMouseUp}>AGREGAR AL CARRITO</button>
                     </div>
                 </div>
             </div>

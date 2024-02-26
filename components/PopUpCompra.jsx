@@ -1,8 +1,10 @@
 import PropTypes from "prop-types";
 import { useState } from 'react'
 import './PopUp.css';
+import PopupPay from './PopUpPay';
+import Popup from './PopUp';
 
-const PopUpCompra = ({ onClose, total, onPago }) => {
+export default function PopUpCompra ({ onClose, total, onPago }) {
     const [color, setColor] = useState({
         color: 'rgba(0, 0, 0, 1)',
         borderColor: 'rgba(0, 0, 0, 1)',
@@ -13,7 +15,12 @@ const PopUpCompra = ({ onClose, total, onPago }) => {
 
     const [selectedButton, setSelectedButton] = useState(null);
     const [quantity, setQuantity] = useState(0);
-    
+    const [popupMessage, setPopupMessage] = useState('');
+    const [popupImage, setPopupImage] = useState('');
+    const [showPopup, setShowPopup] = useState(false);
+    const [popupMessageFail, setPopupMessageFail] = useState('');
+    const [popupImageFail, setPopupImageFail] = useState('');
+    const [showPopupFail, setShowPopupFail] = useState(false);
 
     const handleButtonClick = (buttonName) => {
         setSelectedButton(buttonName);
@@ -62,23 +69,38 @@ const PopUpCompra = ({ onClose, total, onPago }) => {
         })
     }
 
-    function handlePago() {
+    const handlePago = async () => {
         if (selectedButton === 'Efectivo') {
-            if (quantity > total) {
+            if (quantity >= total) {
                 const change = quantity - total;
-                console.log(`El cambio es: ${change}`);
+                setPopupImage("../src/assets/img/success.png");
+                setPopupMessage('Pago exitoso, su cambio es de ' + change.toFixed(2) + ' pesos');
+                setShowPopup(true);
+                console.log(`El cambio es: ${change}`);      
                 // Aquí puedes hacer algo con el cambio, como mostrarlo en la interfaz de usuario
             } else {
-                console.log('La cantidad introducida es menor que el costo total');
+                setPopupImageFail("../src/assets/img/error.png");
+                setPopupMessageFail('La cantidad introducida es menor que el costo total');
+                setShowPopupFail(true);
                 // Aquí puedes hacer algo si la cantidad introducida es menor que el costo total, como mostrar un mensaje de error
                 return; // No continuar con el pago si la cantidad es menor que el costo total
             }
         }
-    
-        alert('Pago realizado con éxito');
+
+
+
         onPago();
-        onClose();
     }
+
+
+    const handleClosePopup = () => {
+        setShowPopup(false);
+        onClose();
+      }
+    
+    const handleClosePopupFail = () => {
+        setShowPopupFail(false);
+        }
 
     const handleQuantityChange = (e) => {
         const quantity = e.target.value;
@@ -86,6 +108,7 @@ const PopUpCompra = ({ onClose, total, onPago }) => {
     };
 
     return (
+        <div>
         <div className="modal-container" id="modal">
             <div className="modal-content d-inline-flex justify-content-lg-center align-items-lg-center" style={{ background: 'rgb(251, 225, 147)', width: '400px', height: '500px', padding: '75px', borderRadius: '10px', border: '2px solid var(--bs-emphasis-color)', marginTop: '80px' }}>
                 <div style={{ width: '350px', textAlign: 'center', height: '500px' }}>
@@ -111,16 +134,18 @@ const PopUpCompra = ({ onClose, total, onPago }) => {
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <button onClick={onClose} className="btn btn-primary" type="button" style={{ marginTop: '20px', fontFamily: 'Allerta', background: color.color, borderWidth: '5px', borderColor: color.borderColor, borderTopColor: color.borderTopColor, borderRightColor: color.borderRightColor, borderBottomColor: color.borderBottomColor, outline: 'none' }}>Cancelar</button>
                         <button onClick={handlePago} className="btn btn-primary" type="button" style={{ marginTop: '20px', fontFamily: 'Allerta', background: color.color, borderWidth: '5px', borderColor: color.borderColor, borderTopColor: color.borderTopColor, borderRightColor: color.borderRightColor, borderBottomColor: color.borderBottomColor, outline: 'none' }} onMouseUp={handleMouseUp} onMouseDown={handleMouseDown} onMouseOver={handleHover} onMouseLeave={handleMouseUp}>Pagar</button>
-                    </div>
+                    </div>                    
                 </div>
             </div>
         </div>
+            {showPopup && (<PopupPay image={popupImage} message={popupMessage} onClose={handleClosePopup} />)}
+            {showPopupFail && (<Popup image={popupImageFail} message={popupMessageFail} onClose={handleClosePopupFail} />)}
+        </div>
     );
-};
+}
 
 PopUpCompra.propTypes = {
     onClose: PropTypes.func.isRequired,
     total: PropTypes.number.isRequired,
+    onPago: PropTypes.func.isRequired,
 };
-
-export default PopUpCompra;

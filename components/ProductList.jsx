@@ -61,7 +61,7 @@ function ProductList({ products }) {
         <img src={agregar} alt="Agregar" className="add-icon" />
       </button>
       {isDeletePopupOpen && <PopupDelete onClose={() => setIsDeletePopupOpen(false)} />}
-      {isEditPopupOpen && <PopupUpdate onClose={() => setIsEditPopupOpen(false)} />}
+      {isEditPopupOpen && <PopupUpdate onClose={() => setIsEditPopupOpen(false)} idProduct={product.idProduct} />}
       {isInsertPopupOpen && <PopupInsert onClose={() => setIsInsertPopupOpen(false)} />}
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from "prop-types";
 import flechaAbajo from "/src/assets/img/caret-abajo.png";
 import flechaArriba from "/src/assets/img/caret-flecha-hacia-arriba.png";
@@ -26,15 +26,12 @@ function ProductSortingBar({ handleSort, products }) {
      setIsDeletePopupOpen(true);
      setIsEditPopupOpen(false); // Asegurarse de que el popup de edición esté cerrado al abrir el de eliminación
    };
-
-   const [activeProductId, setActiveProductId] = useState(null);
  
    //Abrir el pop-up de update al hacer clic en el botón de editar
- const handleEditButtonClick = (productId) => {
-  setIsEditPopupOpen(true);
-  setIsDeletePopupOpen(false); // Asegurarse de que el popup de eliminación esté cerrado al abrir el de edición
-  setActiveProductId(productId); // Establecer el idProduct del producto seleccionado
-};
+   const handleEditButtonClick = () => {
+     setIsEditPopupOpen(true);
+     setIsDeletePopupOpen(false); // Asegurarse de que el popup de eliminación esté cerrado al abrir el de edición
+   };
  
    //Abrir el pop-up de insert al hacer clic en el botón de agregar
    const handleAddButtonClick = () => {
@@ -105,15 +102,6 @@ function ProductSortingBar({ handleSort, products }) {
                  <td>{product.productName}</td>
                  <td>{product.productPrice}</td>
                  <td>{product.productAmount}</td>
-                 <td>
-                   {/* Convertir las imágenes en botones */}
-                   <button className="edit-button" onClick={() => handleEditButtonClick(product.idProduct)}>
-                     <img src={editar} alt="Editar" className="edit-icon" />
-                   </button>
-                   <button className="delete-button" onClick={handleDeleteButtonClick}>
-                     <img src={borrar} alt="Borrar" className="delete-icon" />
-                   </button>
-                 </td>
                </tr>
              ))}
            </tbody>
@@ -123,8 +111,8 @@ function ProductSortingBar({ handleSort, products }) {
          </button>
        </div>
        {isDeletePopupOpen && <PopupDelete onClose={() => setIsDeletePopupOpen(false)} />}
-       {isInsertPopupOpen && <PopupInsert onClose={() => setIsInsertPopupOpen(false)} />}
-         {isEditPopupOpen && <PopupUpdate onClose={() => setIsEditPopupOpen(false)} idProduct={activeProductId} />}
+         {isEditPopupOpen && <PopupUpdate onClose={() => setIsEditPopupOpen(false)} />}
+         {isInsertPopupOpen && <PopupInsert onClose={() => setIsInsertPopupOpen(false)} />}
       </div>
 
       

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'; 
 import Sidebar from '../../../components/ResponsiveAppBar';
 import SearchBar from '../../../components/ProductHeader';
-import ProductSortingBar from '../../../components/ProductSorting';
-import ProductList from '../../../components/ProductList';
+import ProductSortingBar from '../../../components/ProductSortingUser';
+// import ProductList from '../../../components/ProductList';
 
 export default function ProductPage() {
   const [products, setProducts] = useState([]);
@@ -14,7 +14,7 @@ export default function ProductPage() {
   // Obtener los productos desde el app.get del back
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/products'); 
+      const response = await axios.get('http://localhost:3000/productssale'); 
       setProducts(response.data); 
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -23,9 +23,9 @@ export default function ProductPage() {
 
   useEffect(() => {
     fetchProducts(); 
-  }, []);
+  }, []); 
 
-  // Función de ordenamiento
+  // Funcion para ordenar lo que se reciba del back
   const handleSort = (field, newOrder) => {
     // Cambiar el estado del campo activo y el orden
     setActiveField(field);
@@ -50,8 +50,8 @@ export default function ProductPage() {
       
       <div style={{ padding: '25px', marginLeft: '275px' }}>
         <SearchBar />
-        <ProductSortingBar handleSort={handleSort} />
-        <ProductList products={products} />
+        <ProductSortingBar handleSort={handleSort} products={products} />
+        {/* <ProductList products={products} /> */}
       </div>
     </div>
   );

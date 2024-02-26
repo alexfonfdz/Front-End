@@ -3,7 +3,6 @@ import { useState } from 'react'
 import './PopUpUpdateInventory.css';
 
 const AddProductPopup = ({ onClose, onSave }) => {
-  const [idProduct, setIdProduct] = useState("");
   const [idProductType, setIdProductType] = useState("");
   const [idUnit, setIdUnit] = useState("");
   const [productName, setProductName] = useState("");
@@ -12,7 +11,7 @@ const AddProductPopup = ({ onClose, onSave }) => {
   const [productPrice, setProductPrice] = useState("");
 
   const handleSave = () => {
-    onSave({ idProduct, idProductType, idUnit, productName, productAmount, minimumAmount, productPrice });
+    onSave({ idProductType, idUnit, productName, productAmount, minimumAmount, productPrice });
     onClose();
   };
 
@@ -32,31 +31,18 @@ const AddProductPopup = ({ onClose, onSave }) => {
             <table>
               <tbody>
                 <tr>
-                  <td>ID del producto</td>
                   <td>Tipo de producto</td>
                   <td>Unidad</td>
                   <td>Nombre del producto</td>
-                  <td>Cantidad del producto</td>
-                  <td>Cantidad mínima</td>
-                  <td>Precio del producto</td>
                 </tr>
                 <tr>
-                  <td>
-                    <input
-                      type="text"
-                      value={idProduct}
-                      onChange={(e) => setIdProduct(e.target.value)}
-                      placeholder="ID del producto"
-                      style={{ marginTop: '30px', fontFamily: 'Allerta', textAlign: 'center', fontSize: '15px' }}
-                    />
-                  </td>
                   <td>
                     <select
                       value={idProductType}
                       onChange={(e) => setIdProductType(e.target.value)}
                       style={{ marginTop: '30px', fontFamily: 'Allerta', textAlign: 'center', fontSize: '15px' }}
                     >
-                      <option value="">Selecciona el tipo de producto</option>
+                      <option value="" disabled hidden>Selecciona el tipo de producto</option>
                       <option value="1">Almacen</option>
                       <option value="2">Comercial</option>
                     </select>
@@ -67,7 +53,7 @@ const AddProductPopup = ({ onClose, onSave }) => {
                       onChange={(e) => setIdUnit(e.target.value)}
                       style={{ marginTop: '30px', fontFamily: 'Allerta', textAlign: 'center', fontSize: '15px' }}
                     >
-                      <option value="">Selecciona la unidad</option>
+                      <option value="" disabled hidden>Selecciona la unidad</option>
                       <option value="1">KG</option>
                       <option value="2">Unidades</option>
                       <option value="3">Piezas</option>
@@ -82,6 +68,13 @@ const AddProductPopup = ({ onClose, onSave }) => {
                       style={{ marginTop: '30px', fontFamily: 'Allerta', textAlign: 'center', fontSize: '15px' }}
                     />
                   </td>
+                  </tr>
+                  <tr>
+                  <td>Cantidad del producto</td>
+                  <td>Cantidad mínima</td>
+                  <td>Precio del producto</td>
+                </tr>
+                  <tr>
                   <td>
                     <input
                       type="number"

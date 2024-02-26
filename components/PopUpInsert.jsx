@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { useState } from 'react'
-import './PopUp.css';
+import './PopUpInsert.css';
 
 const PopupInsert = ({ onClose }) => {
     const [color, setColor] = useState({
@@ -44,8 +44,8 @@ const PopupInsert = ({ onClose }) => {
 
   return (
     <div className="modal-container" id="modal">
-      <div className="modal-content d-inline-flex justify-content-lg-center align-items-lg-center" style={{ background: 'rgb(251, 225, 147)', width: '400px', height: '800px', padding: '75px', borderRadius: '10px', border: '2px solid var(--bs-emphasis-color)', marginTop: '10px' }}>
-            <div style={{ width: '350px', textAlign: 'center', height: '500px' }}>
+      <div className="modal-content d-inline-flex justify-content-lg-center align-items-lg-center" style={{ background: 'rgb(251, 225, 147)', width: '40vw', height: '90vh', padding: '0px', borderRadius: '10px', border: '2px solid var(--bs-emphasis-color)', marginBottom: '0px' }}>
+            <div style={{ width: '350px', textAlign: 'center', height: '500px', marginBottom: '100px' }}>
                 <div className="d-lg-flex justify-content-lg-end">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" className="bi bi-x d-lg-flex align-content-around align-self-end order-1 justify-content-lg-end align-items-lg-start" style={{ width: '40px', height: '40px', cursor:'pointer' }} onClick={onClose}>
                         <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"></path>
